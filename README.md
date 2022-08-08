@@ -6,8 +6,6 @@ The idea is borrowed from Debian's rkhunter package: in Debian, it is possible t
 to run `rkhunter --propupd` after each install/upgrade/removal operation automatically so that
 the user does not have to type `rkhunter --propupd` manually.
 
-#### The plugin can be temporarily excluded by running yum with the '--disableplugin=yum-plugin-rkhunter' flag.
-
 This feature comes with two SECURITY WARNINGS (copied from README.Debian):
 
      When using automatic database update after each package install/upgrade,
@@ -39,7 +37,7 @@ as root (or use `sudo`).
 
 ## Notes
 
-Just like in Debian, if 'hashes' and 'attributes' tests are disabled, property database is **not** updated automatically:
+* Just like in Debian, if 'hashes' and 'attributes' tests are disabled, property database is **not** updated automatically:
 
 ```bash
 if ! grep -qsE '^DISABLE_TESTS=.*(hashes.*attributes|attributes.*hashes|properties)' /etc/rkhunter.conf /etc/rkhunter.conf.local || \
@@ -47,3 +45,4 @@ if ! grep -qsE '^DISABLE_TESTS=.*(hashes.*attributes|attributes.*hashes|properti
          rkhunter --propupd --nolog
 fi
 ```
+* The plugin has been extended with an automatic 'rkhunter --check' that is launched in the 'ìnit' phase and it can be temporarily excluded by running yum with the '--disableplugin=yum-plugin-rkhunter' flag.
