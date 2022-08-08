@@ -20,17 +20,6 @@ def init_hook(conduit):
     except:
         pass
 
-#    if active and os.path.isfile(exe):
-#        # TODO: controllare ultimo log rkhunter ?? -> logrotate sett >> giornaliero;
-#        p0 = run('rkhunter --check --report-warnings-only --quiet') # TODO: togliere --quiet && girare stdout di p0 in fstring -> conduit.info(2, f'{ rkhunterstdout }') -> diventa output di yum
-#        conduit.info(2, 'Running rkhunter scan...')
-#        if p0.returncode != 0:
-#            raise Exception(f'rkhunter exit code = { p.returncode }')
-#        else:
-#            conduit.info(2, f'rkhunter exit code = { p.returncode }')
-#
-# un attaccante potrebbe intercettare questa fase e ninjare il cambio di un file?            
-#
     if active and os.path.isfile(exe):
         conduit.info(2, 'running rkhunter check')
         command = '%s --check --report-warnings-only' % exe
