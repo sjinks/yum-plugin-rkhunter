@@ -1,10 +1,12 @@
 # yum-plugin-rkhunter
 
-Yum plugin to automatically update rkhunter's file property database after RPM transactions.
+Yum plugin to automatically update rkhunter's file property database after RPM transactions if 'rkhunter --check" returns 0.
 
 The idea is borrowed from Debian's rkhunter package: in Debian, it is possible to instruct `dpkg`
 to run `rkhunter --propupd` after each install/upgrade/removal operation automatically so that
 the user does not have to type `rkhunter --propupd` manually.
+
+#### The plugin can be temporarily excluded by running yum with the '--disableplugin=yum-plugin-rkhunter' flag.
 
 This feature comes with two SECURITY WARNINGS (copied from README.Debian):
 
