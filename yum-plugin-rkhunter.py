@@ -9,8 +9,7 @@ plugin_type = (TYPE_INTERACTIVE,)
 
 active = False
 
-#def init_hook(conduit):
-def pretrans_hook(conduit):
+def init_hook(conduit):
     global active
     active = False
     exe = '/usr/bin/rkhunter' 
@@ -20,7 +19,6 @@ def pretrans_hook(conduit):
             active = True
     except:
         pass
-
     if active and os.path.isfile(exe):
         conduit.info(2, 'running rkhunter check')
         command = '%s --check --report-warnings-only' % exe
@@ -29,7 +27,6 @@ def pretrans_hook(conduit):
         else:
             conduit.info(2, 'rkhunter OK')
 
-	
 def posttrans_hook(conduit):
     global active
     exe = '/usr/bin/rkhunter'
