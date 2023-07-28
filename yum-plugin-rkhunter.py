@@ -9,7 +9,8 @@ plugin_type = (TYPE_INTERACTIVE,)
 
 active = False
 
-def init_hook(conduit):
+#def init_hook(conduit):
+def pretrans_hook(conduit):
     global active
     active = False
     exe = '/usr/bin/rkhunter' 
