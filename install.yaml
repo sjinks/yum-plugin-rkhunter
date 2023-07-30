@@ -1,0 +1,38 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: yes
+  pre_tasks:
+    - name: Ensuring dnf-plugins are enabled...
+      ansible.builtin.lineinfile:
+        path: /etc/dnf/dnf.conf
+        regexp: '^plugins=.*'
+        line: 'plugins=1'
+        state: present
+        backup: yes
+      when: ansible_pkg_mgr == 'dnf'
+    - name: Ensuring yum-plugins are enabled...
+      ansible.builtin.lineinfile:
+        path: /etc/yum.conf
+        regexp: '^plugins=.*'
+        line: 'plugins=1'
+        state: present
+        backup: yes
+      when: ansible_pkg_mgr == 'yum'
+  tasks:
+    - name: Copying dnf-plugin-rkhunter.py to /usr/lib/python3.6/site-packages/dnf-plugins/...
+      ansible.builtin.copy:
+        src: dnf-plugin-rkhunter.py
+        dest: /usr/lib/python3.6/site-packages/dnf-plugins/
+        owner: root
+        group: root
+        mode: 0755
+      when: ansible_pkg_mgr == 'dnf'
+    - name: Copying yum-plugin-rkhunter.py to /etc/yum/pluginconf.d/...
+      ansible.builtin.copy:
+        src: yum-plugin-rkhunter.py
+        dest: /etc/yum/pluginconf.d/
+        owner: root
+        group: root
+        mode: 0755
+      when: ansible_pkg_mgr == 'yum'
