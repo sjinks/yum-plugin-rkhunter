@@ -31,7 +31,7 @@
     - name: Copying yum-plugin-rkhunter.py to /etc/yum/pluginconf.d/...
       ansible.builtin.copy:
         src: yum-plugin-rkhunter.py
-        dest: /etc/yum/pluginconf.d/
+        dest: /usr/lib/yum-plugins/
         owner: root
         group: root
         mode: 0755
