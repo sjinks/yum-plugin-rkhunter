@@ -25,6 +25,11 @@ Copy `yum-plugin-rkhunter.py` to `/etc/yum/pluginconf.d/`:
 sudo cp yum-plugin-rkhunter.py /etc/yum/pluginconf.d/
 ```
 
+copy 'yum-plugin-rkhunter.conf' to '/etc/yum/pluginconf.d/':
+```bash
+sudo cp yum-plugin-rkhunter.conf /etc/yum/pluginconf.d/
+```
+
 Activate plugins:
 ```ini
 # /etc/yum.conf
