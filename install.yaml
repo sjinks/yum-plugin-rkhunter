@@ -28,10 +28,18 @@
         group: root
         mode: 0755
       when: ansible_pkg_mgr == 'dnf'
-    - name: Copying yum-plugin-rkhunter.py to /etc/yum/pluginconf.d/...
+    - name: Copying yum-plugin-rkhunter.py to /usr/lib/yum-plugins/...
       ansible.builtin.copy:
         src: yum-plugin-rkhunter.py
         dest: /usr/lib/yum-plugins/
+        owner: root
+        group: root
+        mode: 0755
+      when: ansible_pkg_mgr == 'yum'
+    - name: Copying yum-plugin-rkhunter.conf to /etc/yum/pluginconf.d/...
+      ansible.builtin.copy:
+        src: yum-plugin-rkhunter.conf
+        dest: /etc/yum/pluginconf.d/
         owner: root
         group: root
         mode: 0755
